@@ -50,12 +50,14 @@ function App() {
 
   return (
     <div className="App">
+      <div className="title-container">
       <h1>Aaron Judge</h1>
       <h2>Yankee Captain</h2>
       <h3>
       Interested in this domain? Contact 
       <a href='mailto: sean@dutydomains.com'>{" "} sean@dutydomains.com</a >
       </h3>
+      </div>
       <div className="background"></div>
       <div className="main">
         <audio className="judge-audio" src={judgeAudio} autoPlay={true} />
