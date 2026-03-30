@@ -72,9 +72,9 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
+        <GoogleAnalytics />
       </head>
       <body className="min-h-screen flex flex-col">
-        <GoogleAnalytics />
         <Navigation />
         <main className="flex-1">{children}</main>
         <Footer />
