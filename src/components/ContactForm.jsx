@@ -1,8 +1,10 @@
 "use client";
 
+import { trackCTAClick } from "@/lib/analytics";
+
 export default function ContactForm() {
   return (
-    <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+    <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); trackCTAClick({ cta_text: 'Send Message', cta_location: 'contact_form' }); }}>
       <div>
         <label
           htmlFor="name"

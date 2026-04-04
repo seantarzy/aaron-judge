@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { trackNavigationClick } from "@/lib/analytics";
 
 const NAV_ITEMS = [
   { href: "/", label: "Home" },
@@ -38,6 +39,7 @@ export default function Navigation() {
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={() => trackNavigationClick({ destination: item.href, nav_location: 'header' })}
                 className={`nav-link ${
                   pathname === item.href ? "nav-link-active" : ""
                 }`}
@@ -70,7 +72,7 @@ export default function Navigation() {
               <Link
                 key={item.href}
                 href={item.href}
-                onClick={() => setMobileOpen(false)}
+                onClick={() => { trackNavigationClick({ destination: item.href, nav_location: 'header' }); setMobileOpen(false); }}
                 className={`block py-2 px-3 rounded-lg ${
                   pathname === item.href
                     ? "bg-blue-600/20 text-white"

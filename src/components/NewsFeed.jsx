@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { timeAgo } from "@/lib/utils";
+import { trackOutboundClick } from "@/lib/analytics";
 
 export default function NewsFeed() {
   const [articles, setArticles] = useState([]);
@@ -63,6 +64,7 @@ export default function NewsFeed() {
             href={article.url}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackOutboundClick({ url: article.url, link_text: article.title, link_location: 'news_feed' })}
             className="text-lg font-semibold hover:text-blue-400 transition-colors leading-snug mb-2"
           >
             {article.title}

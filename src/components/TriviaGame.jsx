@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import { trackGamePlay } from "@/lib/analytics";
 
 const QUESTIONS = [
   {
@@ -78,7 +79,9 @@ export default function TriviaGame() {
     (index) => {
       if (selected !== null) return; // already answered
       setSelected(index);
-      if (index === question.answer) {
+      const correct = index === question.answer;
+      trackGamePlay('trivia', correct ? 'correct_answer' : 'wrong_answer', currentQ + 1);
+      if (correct) {
         setScore((s) => s + 1);
       }
     },
@@ -95,6 +98,7 @@ export default function TriviaGame() {
   }, [currentQ]);
 
   const handleRestart = useCallback(() => {
+    trackGamePlay('trivia', 'restart');
     setCurrentQ(0);
     setScore(0);
     setSelected(null);
@@ -105,6 +109,7 @@ export default function TriviaGame() {
   /* ---------- Finished screen ---------- */
   if (finished) {
     const pct = Math.round((score / QUESTIONS.length) * 100);
+    trackGamePlay('trivia', 'complete', score);
     let message = "Better luck next time!";
     if (pct >= 90) message = "All Rise! You're a true Judge expert!";
     else if (pct >= 70) message = "Solid performance, just like #99!";
