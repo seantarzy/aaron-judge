@@ -2,6 +2,7 @@ import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import DataDiveFeedback from "@/components/DataDiveFeedback";
 
 export const metadata = {
   title: {
@@ -78,6 +79,7 @@ export default function RootLayout({ children }) {
         <Navigation />
         <main className="flex-1">{children}</main>
         <Footer />
+        <DataDiveFeedback siteSlug="aaron-judge" accentColor="#1e40af" />
       </body>
     </html>
   );
